@@ -1,0 +1,10 @@
+GET http://localhost:8080/queues/request
+Accept: application/json
+
+###
+PUT http://localhost:8080/queues/status/d48ffaeb-525e-4b8d-bafc-71020ce4189c
+Accept: application/json
+
+###
+GET http://localhost:8080/queues/today
+Accept: application/json

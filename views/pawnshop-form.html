@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="lofi">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Form Gadai</title>
+    <link rel="stylesheet" href="../public/style.css"/>
+</head>
+<body class="p-2">
+<main class="p-5 border-l border-l-gray-300 mt-5 max-w-lg rounded-xl w-full mx-auto">
+    <h1 class="font-bold text-lg text-center uppercase">
+        Formulir Aplikasi Pegadaian Rahn
+    </h1>
+    <form action="/pawnshops/form/process" method="post">
+        <div class="form-control w-full max-w-xs mt-5">
+            <label class="label">
+                <span class="label-text font-bold">Nama Lengkap</span>
+            </label>
+            <input
+                    type="text"
+                    required
+                    name="nama-lengkap"
+                    placeholder="Ilham Mubarak"
+                    class="input input-sm input-primary input-bordered w-full max-w-xs"
+            />
+        </div>
+        <div class="form-control w-full max-w-xs">
+            <label class="label">
+                        <span class="label-text font-bold"
+                        >Asal Barang Jaminan</span
+                        >
+            </label>
+            <div class="flex gap-x-2 items-center">
+                <input type="checkbox"
+                       value="Hasil Usaha"
+                       name="asal-barang-jaminan" class="checkbox checkbox-xs"/>
+                Hasil Usaha
+            </div>
+            <div class="flex gap-x-2 items-center">
+                <input type="checkbox"
+                       value="Harta Investasi"
+                       name="asal-barang-jaminan" class="checkbox checkbox-xs"/>
+                Harta Investasi
+            </div>
+            <div class="flex gap-x-2 items-center">
+                <input type="checkbox"
+                       value="Pinjaman"
+                       name="asal-barang-jaminan" class="checkbox checkbox-xs"/>
+                Pinjaman
+            </div>
+            <div class="flex gap-x-2 items-center">
+                <input type="checkbox"
+                       value="Warisan"
+                       name="asal-barang-jaminan" class="checkbox checkbox-xs"/>
+                Warisan
+            </div>
+            <div class="flex gap-x-2 items-center">
+                <input type="checkbox"
+                       value="Hibah"
+                       name="asal-barang-jaminan" class="checkbox checkbox-xs"/>
+                Hibah
+            </div>
+            <div class="flex gap-x-2 items-center">
+                <input type="checkbox"
+                       value="Hadiah"
+                       name="asal-barang-jaminan" class="checkbox checkbox-xs"/>
+                Hadiah
+            </div>
+        </div>
+
+        <div class="form-control w-full max-w-xs">
+            <label class="label">
+                        <span class="label-text font-bold"
+                        >Status Transaksi</span
+                        >
+            </label>
+            <div class="flex gap-x-2 items-center">
+                <input type="checkbox"
+                       value="Untuk Diri Sendiri"
+                       name="status-transaksi"
+                       class="checkbox checkbox-xs"/>
+                Untuk Diri Sendiri
+            </div>
+            <div class="flex gap-x-2 items-center">
+                <input type="checkbox"
+                       value="Untuk Orang Lain"
+                       name="status-transaksi"
+                       class="checkbox checkbox-xs"/>
+                Untuk Orang Lain
+            </div>
+        </div>
+
+        <div class="form-control w-full max-w-xs">
+            <label class="label">
+                        <span class="label-text font-bold"
+                        >Tujuan Transaksi</span
+                >
+            </label>
+            <div class="flex gap-x-2 items-center">
+                <input type="checkbox"
+                       value="Usaha atau Modal Kerja"
+                       name="tujuan-transaksi"
+                       class="checkbox checkbox-xs"/>
+                Usaha / Modal Kerja
+            </div>
+            <div class="flex gap-x-2 items-center">
+                <input type="checkbox"
+                       value="Biaya Pendidikan"
+                       name="tujuan-transaksi"
+                       class="checkbox checkbox-xs"/>
+                Biaya Pendidikan
+            </div>
+
+            <div class="flex gap-x-2 items-center">
+                <input type="checkbox"
+                       value="Investasi"
+                       name="tujuan-transaksi"
+                       class="checkbox checkbox-xs"/>
+                Investasi
+            </div>
+
+            <div class="flex gap-x-2 items-center">
+                <input type="checkbox"
+                       value="Hajatan atau Upacara"
+                       name="tujuan-transaksi"
+                       class="checkbox checkbox-xs"/>
+                Hajatan / Upacara
+            </div>
+
+            <div class="flex gap-x-2 items-center">
+                <input type="checkbox"
+                       value="Pembelian Barang atau Jasa"
+                       name="tujuan-transaksi"
+                       class="checkbox checkbox-xs"/>
+                Pembelian Barang atau Jasa
+            </div>
+
+            <div class="flex gap-x-2 items-center">
+                <input type="checkbox"
+                       value="Lain-lain"
+                       name="tujuan-transaksi" class="checkbox checkbox-xs"/>
+            Lain-lain
+                <input
+                        type="text"
+                        placeholder="Lain-lain"
+                        name="tujuan-transaksi-lain-lain"
+                        class="input input-sm input-primary input-bordered w-32 max-w-xs"
+                />
+            </div>
+        </div>
+        <div class="form-control w-full max-w-xs">
+            <label class="label">
+                        <span class="label-text font-bold"
+                        >Cara Pembayaran</span
+                        >
+            </label>
+            <input
+                    type="text"
+                    name="cara-pembayaran"
+                    value="Non Tunai"
+                    readonly
+                    class="input input-sm input-primary input-bordered w-full max-w-xs"
+            />
+        </div>
+
+        <div class="form-control w-full max-w-xs">
+            <label class="label">
+                        <span class="label-text font-bold"
+                        >Fitur yang Diinginkan</span
+                        >
+            </label>
+            <div class="flex gap-x-2 items-center">
+                <input
+                        name="fitur-yang-diinginkan"
+                        value="Regular"
+                        type="checkbox" class="checkbox checkbox-xs"/>
+                Regular
+            </div>
+            <div class="flex gap-x-2 items-center">
+                <input type="checkbox"
+                       name="fitur-yang-diinginkan"
+                       value="Bisnis"
+                       class="checkbox checkbox-xs"/>
+                Bisnis
+            </div>
+            <div class="flex gap-x-2 items-center">
+                <input type="checkbox"
+                       name="fitur-yang-diinginkan"
+                       value="Fleksi"
+                       class="checkbox checkbox-xs"/>
+                Fleksi
+
+                <div class="flex items-center justify-center gap-x-2">
+                    <div class="flex gap-x-2 items-center">
+                        <input
+                                name="lama-fleksi"
+                                value="15 Hari"
+                                type="checkbox"
+                                class="checkbox checkbox-xs"
+                        />
+                        15 Hari
+                    </div>
+                    <div class="flex gap-x-2 items-center">
+                        <input
+                                name="lama-fleksi"
+                                value="30 Hari"
+                                type="checkbox"
+                                class="checkbox checkbox-xs"
+                        />
+                        30 Hari
+                    </div>
+
+                    <div class="flex gap-x-2 items-center">
+                        <input
+                                name="lama-fleksi"
+                                value="60 Hari"
+                                type="checkbox"
+                                class="checkbox checkbox-xs"
+                        />
+                        60 Hari
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-control space-y-2 w-full max-w-xs">
+            <label class="label">
+                        <span class="label-text font-bold"
+                        >Pengambilan Uang (Di Transfer)</span
+                        >
+            </label>
+            <input
+                    type="text"
+                    required
+                    name="pengambilan-uang-nama-bank"
+                    placeholder="Nama Bank"
+                    class="input input-sm input-primary input-bordered w-full max-w-xs"
+            />
+
+            <div class="space-y-2">
+
+            <input
+                    type="text"
+                    required
+                    name="pengambilan-uang-no-rek"
+                    placeholder="No Rekening"
+                    class="input input-sm input-primary input-bordered w-full max-w-xs"
+            />
+            <input
+                    type="text"
+                    required
+                    placeholder="Atas Nama"
+                    name="pengambilan-uang-an"
+                    class="input input-sm input-primary input-bordered w-full max-w-xs"
+            />
+
+
+            </div>
+        </div>
+
+        <div class="form-control w-full max-w-xs">
+            <label class="label">
+                        <span class="label-text font-bold"
+                        >Kelebihan Lelang (jika ada)</span
+                        >
+            </label>
+            <div class="flex gap-x-2 items-center">
+                <input type="checkbox"
+                       value="Tunai"
+                       name="kelebihan-lelang"
+                       class="checkbox checkbox-xs"/>
+                Tunai
+            </div>
+            <div class="flex gap-x-2 items-center">
+                <input type="checkbox"
+                       value="Top Up Tabungan Emas"
+                       name="kelebihan-lelang"
+                       class="checkbox checkbox-xs"/>
+                Top Up Tabungan Emas
+            </div>
+            <div class="mt-2 space-y-2">
+                <input
+                        type="text"
+                        name="top-up-tabungan-emas-nama-bank"
+                        placeholder="Nama Bank"
+                        class="input input-sm input-primary input-bordered w-full max-w-xs"
+                />
+
+                <input
+                        type="text"
+                        name="top-up-tabungan-emas-no-rek"
+                        placeholder="No Rekening"
+                        class="input input-sm input-primary input-bordered w-full max-w-xs"
+                />
+
+                <input
+                        type="text"
+                        name="top-up-tabungan-emas-no-an"
+                        placeholder="Atas Nama"
+                        class="input input-sm input-primary input-bordered w-full max-w-xs"
+                />
+            </div>
+        </div>
+
+
+        <div class="form-control w-full max-w-xs">
+            <label class="label">
+                        <span class="label-text font-bold"
+                        >Besar Pinjaman</span
+                        >
+            </label>
+            <div class="flex gap-x-2 items-center">
+                <input type="checkbox"
+                       name="besar-pinjaman"
+                       value="Maksimal"
+                       class="checkbox checkbox-xs"/>
+                Maksimal
+            </div>
+            <div class="flex gap-x-2 items-center">
+                <input type="checkbox"
+                       name="besar-pinjaman"
+                       value="Permintaan"
+                       class="checkbox checkbox-xs"/>
+                Permintaan
+                <input
+                        type="text"
+                        name="besar-pinjaman-permintaan"
+                        placeholder="500000000"
+                        class="input input-sm input-primary input-bordered w-full max-w-xs"
+                />
+            </div>
+        </div>
+        <div class="form-control w-full max-w-xs">
+            <label class="label">
+                <span class="label-text font-bold">Barang Jaminan Yang Diserahkan</span>
+            </label>
+            <input
+                    type="text"
+                    requiresd
+                    name="barang-jaminan"
+                    placeholder="Sertifikat Tanah"
+                    class="input input-sm input-primary input-bordered w-full max-w-xs"
+            />
+        </div>
+        <div class="form-control w-full max-w-xs">
+            <label class="label">
+                <span class="label-text font-bold">Alamat</span>
+            </label>
+            <input
+                    type="text"
+                    required
+                    name="alamat"
+                    placeholder="Jl. Raya No. 1"
+                    class="input input-sm input-primary input-bordered w-full max-w-xs"
+            />
+        </div>
+        <div class="form-control w-full max-w-xs">
+            <label class="label">
+                <span class="label-text font-bold">No. HP</span>
+            </label>
+            <input
+                    type="text"
+                    required
+                    name="nomor-hp"
+                    placeholder="08123456789"
+                    class="input input-sm input-primary input-bordered w-full max-w-xs"
+            />
+        </div>
+
+        <button
+                type="submit"
+                class="btn btn-primary rounded-lg mt-5 flex justify-center">Submit
+        </button>
+    </form>
+</main>
+</body>
+</html>
