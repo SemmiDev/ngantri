@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="lofi">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Queue</title>
+    <link rel="stylesheet" href="../public/style.css"/>
+</head>
+<body class="p-2">
+<div class="overflow-x-auto max-w-3xl mx-auto">
+    <a
+            href="/pawnshops"
+            class="btn btn-sm btn-outline btn-primary">Data Form Gadai</a>
+    <a
+            href="/queues"
+            class="btn btn-sm btn-outline btn-primary">Antrian Hari Ini</a>
+    <table class="table table-zebra w-full mt-5">
+        <tr>
+            <td>Nama Lengkap</td>
+            <td>{{ .NamaLengkap}}</td>
+        </tr>
+        <tr>
+            <td>Asal Barang Jaminan</td>
+            <td>{{ .AsalBarangJaminan}}</td>
+        </tr>
+        <tr>
+            <td>Tujuan Transaksi</td>
+            <td>{{ .TujuanTransaksi}}</td>
+        </tr>
+        <tr>
+            <td>Cara Transaksi</td>
+            <td>{{ .CaraPembayaran}}</td>
+        </tr>
+        <tr>
+            <td>Fitur Yang Transaksi</td>
+            <td>{{ .FiturYangDiinginkan}}</td>
+        </tr>
+        <tr>
+            <td>Pengambilan Uang</td>
+            <td>{{ .PengambilanUang}}</td>
+        </tr>
+        <tr>
+            <td>Kelebihan Lelang</td>
+            <td>{{ .KelebihanLelang}}</td>
+        </tr>
+        <tr>
+            <td>Besar Pinjaman</td>
+            <td>{{ .BesarPinjaman}}</td>
+        </tr>
+        <tr>
+            <td>Barang Jaminan</td>
+            <td>{{ .BarangJaminan}}</td>
+        </tr>
+        <tr>
+            <td>Alamat</td>
+            <td>{{ .Alamat}}</td>
+        </tr>
+        <tr>
+            <td>No Hp</td>
+            <td>{{ .NoHP}}</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

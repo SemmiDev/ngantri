@@ -2,7 +2,6 @@ package main
 
 import (
 	"embed"
-	"encoding/json"
 	"fmt"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
@@ -59,13 +58,15 @@ func main() {
 	r.Get("/public/*", http.StripPrefix("/public", fsHandler()).ServeHTTP)
 
 	r.Get("/", handlers.homePageHandler)
+
+	r.Get("/pawnshops", handlers.getAllPawnshops)
+	r.Get("/pawnshops/{id}", handlers.pawnshopsDetailsHandler)
 	r.Get("/pawnshops/form", handlers.pawnShopFormHandler)
 	r.Post("/pawnshops/form/process", handlers.pawnShopFormProcessHandler)
-	r.Get("/queues/request", handlers.queueRequestHandler)
 
-	r.Get("/queues/status/{id}", handlers.updateQueueStatusNumberHandler)
-	r.Get("/queues/today", handlers.getAllQueueByCurrentDateHandler)
-	r.Get("/queues", handlers.getAllQueueByCurrentDateHandler)
+	r.Get("/queues", handlers.getAllQueuesHandler)
+	r.Get("/queues/request", handlers.queueRequestHandler)
+	r.Get("/queues/status/{id}/update", handlers.updateQueueStatusNumberHandler)
 
 	serverPort := utils.GetEnv("PORT", "8080")
 	fmt.Println("Server started on port", serverPort)
@@ -116,19 +117,7 @@ func (h *handlers) updateQueueStatusNumberHandler(w http.ResponseWriter, r *http
 		return
 	}
 
-	w.WriteHeader(http.StatusOK)
-}
-
-func (h *handlers) getAllQueueByCurrentDateHandler(w http.ResponseWriter, r *http.Request) {
-	queueList, err := h.queueDataStore.GetAllQueueByCurrentDate()
-	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
-		return
-	}
-
-	w.WriteHeader(http.StatusOK)
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(queueList)
+	http.Redirect(w, r, "/queues", http.StatusSeeOther)
 }
 
 func (h *handlers) pawnShopFormProcessHandler(w http.ResponseWriter, r *http.Request) {
@@ -165,7 +154,7 @@ func (h *handlers) pawnShopFormProcessHandler(w http.ResponseWriter, r *http.Req
 	topUpTabunganEmasNamaBank := r.FormValue("top-up-tabungan-emas-nama-bank")
 	topUpTabunganEmasNoRek := r.FormValue("top-up-tabungan-emas-no-rek")
 	topUpTabunganEmasAn := r.FormValue("top-up-tabungan-emas-an")
-	kelebihanLelang += fmt.Sprintf(" Top Up Tabungan Emas: Nomor Rekening: %s, Atas Nama: %s, Bank: %s", topUpTabunganEmasNoRek, topUpTabunganEmasAn, topUpTabunganEmasNamaBank)
+	kelebihanLelang += fmt.Sprintf(", Nomor Rekening: %s, Atas Nama: %s, Bank: %s", topUpTabunganEmasNoRek, topUpTabunganEmasAn, topUpTabunganEmasNamaBank)
 
 	besarPinjaman := r.FormValue("besar-pinjaman")
 	besarPinjamanPermintaan := r.FormValue("besar-pinjaman-permintaan")
@@ -201,10 +190,45 @@ func (h *handlers) pawnShopFormProcessHandler(w http.ResponseWriter, r *http.Req
 	http.Redirect(w, r, "/queues/request", http.StatusSeeOther)
 }
 
-func PrettyPrint(v interface{}) (err error) {
-	b, err := json.MarshalIndent(v, "", "  ")
-	if err == nil {
-		fmt.Println(string(b))
+func (h *handlers) getAllQueuesHandler(w http.ResponseWriter, _ *http.Request) {
+	queueList, err := h.queueDataStore.GetAllQueueByCurrentDate()
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
 	}
-	return
+
+	response := map[string]interface{}{
+		"queueList": queueList,
+	}
+
+	queues := template.Must(template.ParseFS(Resources, path.Join("views", "queues.html")))
+	queues.Execute(w, response)
+}
+
+func (h *handlers) getAllPawnshops(w http.ResponseWriter, _ *http.Request) {
+	pawnshopsList, err := h.pawnshopDataStore.GetPawnshop()
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	response := map[string]interface{}{
+		"pawnshopsList": pawnshopsList,
+	}
+
+	allPawmshopsView := template.Must(template.ParseFS(Resources, path.Join("views", "pawnshops.html")))
+	allPawmshopsView.Execute(w, response)
+}
+
+func (h *handlers) pawnshopsDetailsHandler(w http.ResponseWriter, r *http.Request) {
+	id := chi.URLParam(r, "id")
+
+	pawnshopDetails, err := h.pawnshopDataStore.GetPawnshopByID(id)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	pawnshopDetailsView := template.Must(template.ParseFS(Resources, path.Join("views", "pawnshops-details.html")))
+	pawnshopDetailsView.Execute(w, pawnshopDetails)
 }

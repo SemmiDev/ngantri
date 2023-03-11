@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="lofi">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Queue</title>
+    <link rel="stylesheet" href="../public/style.css"/>
+</head>
+<body class="p-2">
+<div class="overflow-x-auto max-w-3xl mx-auto">
+    <a
+            href="/pawnshops"
+            class="btn btn-sm btn-outline btn-primary">Data Form Gadai</a>
+    <a
+            href="/queues"
+            class="btn btn-sm btn-outline btn-primary">Antrian Hari Ini</a>
+    <table class="table table-zebra w-full mt-5">
+        <thead>
+        <tr>
+            <th>Nama</th>
+            <th>Alamat</th>
+            <th>No HP</th>
+            <th>Aksi</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{range .pawnshopsList}}
+            <tr>
+                <td>{{ .NamaLengkap }}</td>
+                <td>{{ .Alamat }}</td>
+                <td>{{ .NoHP }}</td>
+                <td>
+                    <a
+                        href="/pawnshops/{{ .ID }}"
+                        class="btn btn-sm btn-primary">Details</a>
+                </td>
+            </tr>
+        {{end}}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

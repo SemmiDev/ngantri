@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="lofi">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Queue</title>
+    <link rel="stylesheet" href="../public/style.css"/>
+</head>
+<body class="p-2">
+<div class="overflow-x-auto max-w-3xl mx-auto">
+    <a
+        href="/pawnshops"
+        class="btn btn-sm btn-outline btn-primary">Data Form Gadai</a>
+    <a
+        href="/queues"
+        class="btn btn-sm btn-outline btn-primary">Antrian Hari Ini</a>
+    <table class="table table-zebra w-full mt-5">
+        <thead>
+        <tr>
+            <th>Tanggal</th>
+            <th>Nomor Antrian</th>
+            <th>Status Antrian</th>
+            <th>Aksi</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{range .queueList}}
+        <tr>
+            <td>{{ .QueueAt }}</td>
+            <td>{{ .QueueNumber }}</td>
+            <td>{{ .Status }}</td>
+
+            {{if eq .Status "waiting"}}
+            <td>
+                <a
+                        href="/queues/status/{{ .ID }}/update"
+                        class="btn btn-sm btn-primary">Update Status ✔️</a>
+            </td>
+                {{else}}
+            <td>
+                <button class="btn btn-sm btn-info">DONE</button>
+            </td>
+            {{end}}
+        </tr>
+        {{end}}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
