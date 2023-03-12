@@ -12,7 +12,6 @@ import (
 	"net/http"
 	"ngantri/pawnshop"
 	"ngantri/queue"
-	"ngantri/token"
 	"ngantri/utils"
 	"path"
 )
@@ -38,26 +37,21 @@ func main() {
 		MaxAge:           300,
 	}))
 
-	symmetricKey := utils.GetEnv("SYMMETRIC_KEY", "76440225709465899502497877279549")
-	tokenMaker, err := token.NewPasetoMaker(symmetricKey)
-	if err != nil {
-		log.Fatalf("failed to create token maker: %v", err)
-	}
-
 	db, dbErr := utils.ConnectDB()
 	if dbErr != nil {
-		log.Fatalf("failed to connect to database: %v", err)
+		log.Fatalf("failed to connect to database: %v", dbErr)
 	}
 
 	handlers := &handlers{
 		pawnshopDataStore: pawnshop.NewMySqlDataStore(db),
 		queueDataStore:    queue.NewMySqlDataStore(db),
-		tokenMaker:        tokenMaker,
 	}
 
 	r.Get("/public/*", http.StripPrefix("/public", fsHandler()).ServeHTTP)
 
 	r.Get("/", handlers.homePageHandler)
+	r.Get("/login", handlers.handleLoginPage)
+	r.Post("/login", handlers.handleLoginProcess)
 
 	r.Get("/pawnshops", handlers.getAllPawnshops)
 	r.Get("/pawnshops/{id}", handlers.pawnshopsDetailsHandler)
@@ -76,7 +70,6 @@ func main() {
 type handlers struct {
 	pawnshopDataStore *pawnshop.MySqlDataStore
 	queueDataStore    *queue.MySqlDataStore
-	tokenMaker        token.Maker
 }
 
 func fsHandler() http.Handler {
@@ -85,6 +78,11 @@ func fsHandler() http.Handler {
 		log.Fatalf("failed to open static files: %v", err)
 	}
 	return http.FileServer(http.FS(sub))
+}
+
+func (h *handlers) handleLoginPage(w http.ResponseWriter, r *http.Request) {
+	loginPage := template.Must(template.ParseFS(Resources, path.Join("views", "login.html")))
+	loginPage.Execute(w, nil)
 }
 
 func (h *handlers) homePageHandler(w http.ResponseWriter, _ *http.Request) {
@@ -231,4 +229,22 @@ func (h *handlers) pawnshopsDetailsHandler(w http.ResponseWriter, r *http.Reques
 
 	pawnshopDetailsView := template.Must(template.ParseFS(Resources, path.Join("views", "pawnshops-details.html")))
 	pawnshopDetailsView.Execute(w, pawnshopDetails)
+}
+
+func (h *handlers) handleLoginProcess(w http.ResponseWriter, r *http.Request) {
+	err := r.ParseForm()
+	if err != nil {
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+		return
+	}
+
+	username := r.FormValue("username")
+	password := r.FormValue("password")
+
+	if username != "admin" && password != "admin" {
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+		return
+	}
+
+	http.Redirect(w, r, "/queues", http.StatusSeeOther)
 }

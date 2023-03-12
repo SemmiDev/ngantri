@@ -5,27 +5,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Form Gadai</title>
-    <link rel="stylesheet" href="../public/style.css"/>
+    <link rel="stylesheet" href="/public/style.css"/>
+    <link rel="stylesheet" href="/public/fonts.css"/>
 </head>
-<body class="p-2">
+<body class="p-3 mx-auto max-w-lg flex flex-col items-center mt-5 w-full">
+<img src="https://www.pegadaian.co.id/assets/frontend/img/layout/pegadaian-logo.png"
+     class="w-52 object-cover mt-5"
+     alt="Logo Pegadaian">
 <main class="p-5 border-l border-l-gray-300 mt-5 max-w-lg rounded-xl w-full mx-auto">
     <h1 class="font-bold text-lg text-center uppercase">
         Formulir Aplikasi Pegadaian Rahn
     </h1>
     <form action="/pawnshops/form/process" method="post">
-        <div class="form-control w-full max-w-xs mt-5">
+        <div class="form-control w-full max-w-lg mt-5">
             <label class="label">
-                <span class="label-text font-bold">Nama Lengkap</span>
+                <span class="label-text font-bold">Nama Lengkap
+                <span class="text-xs text-green-500">(wajib)</span>
+                </span>
             </label>
             <input
                     type="text"
                     required
                     name="nama-lengkap"
                     placeholder="Ilham Mubarak"
-                    class="input input-sm input-primary input-bordered w-full max-w-xs"
+                    class="input input-sm input-primary input-bordered w-full max-w-lg"
             />
         </div>
-        <div class="form-control w-full max-w-xs">
+        <div class="form-control w-full max-w-lg">
             <label class="label">
                         <span class="label-text font-bold"
                         >Asal Barang Jaminan</span
@@ -69,7 +75,7 @@
             </div>
         </div>
 
-        <div class="form-control w-full max-w-xs">
+        <div class="form-control w-full max-w-lg">
             <label class="label">
                         <span class="label-text font-bold"
                         >Status Transaksi</span
@@ -91,11 +97,11 @@
             </div>
         </div>
 
-        <div class="form-control w-full max-w-xs">
+        <div class="form-control w-full max-w-lg">
             <label class="label">
                         <span class="label-text font-bold"
                         >Tujuan Transaksi</span
-                >
+                        >
             </label>
             <div class="flex gap-x-2 items-center">
                 <input type="checkbox"
@@ -140,16 +146,16 @@
                 <input type="checkbox"
                        value="Lain-lain"
                        name="tujuan-transaksi" class="checkbox checkbox-xs"/>
-            Lain-lain
+                Lain-lain
                 <input
                         type="text"
                         placeholder="Lain-lain"
                         name="tujuan-transaksi-lain-lain"
-                        class="input input-sm input-primary input-bordered w-32 max-w-xs"
+                        class="input input-sm input-primary input-bordered w-32 max-w-lg"
                 />
             </div>
         </div>
-        <div class="form-control w-full max-w-xs">
+        <div class="form-control w-full max-w-lg">
             <label class="label">
                         <span class="label-text font-bold"
                         >Cara Pembayaran</span
@@ -160,11 +166,11 @@
                     name="cara-pembayaran"
                     value="Non Tunai"
                     readonly
-                    class="input input-sm input-primary input-bordered w-full max-w-xs"
+                    class="input input-sm input-primary input-bordered w-full max-w-lg"
             />
         </div>
 
-        <div class="form-control w-full max-w-xs">
+        <div class="form-control w-full max-w-lg">
             <label class="label">
                         <span class="label-text font-bold"
                         >Fitur yang Diinginkan</span
@@ -223,10 +229,12 @@
                 </div>
             </div>
         </div>
-        <div class="form-control space-y-2 w-full max-w-xs">
+        <div class="form-control space-y-2 w-full max-w-lg">
             <label class="label">
                         <span class="label-text font-bold"
-                        >Pengambilan Uang (Di Transfer)</span
+                        >Pengambilan Uang
+                <span class="text-xs text-green-500">(wajib)</span>
+                        </span
                         >
             </label>
             <input
@@ -234,31 +242,31 @@
                     required
                     name="pengambilan-uang-nama-bank"
                     placeholder="Nama Bank"
-                    class="input input-sm input-primary input-bordered w-full max-w-xs"
+                    class="input input-sm input-primary input-bordered w-full max-w-lg"
             />
 
             <div class="space-y-2">
 
-            <input
-                    type="text"
-                    required
-                    name="pengambilan-uang-no-rek"
-                    placeholder="No Rekening"
-                    class="input input-sm input-primary input-bordered w-full max-w-xs"
-            />
-            <input
-                    type="text"
-                    required
-                    placeholder="Atas Nama"
-                    name="pengambilan-uang-an"
-                    class="input input-sm input-primary input-bordered w-full max-w-xs"
-            />
+                <input
+                        type="text"
+                        required
+                        name="pengambilan-uang-no-rek"
+                        placeholder="No Rekening"
+                        class="input input-sm input-primary input-bordered w-full max-w-lg"
+                />
+                <input
+                        type="text"
+                        required
+                        placeholder="Atas Nama"
+                        name="pengambilan-uang-an"
+                        class="input input-sm input-primary input-bordered w-full max-w-lg"
+                />
 
 
             </div>
         </div>
 
-        <div class="form-control w-full max-w-xs">
+        <div class="form-control w-full max-w-lg">
             <label class="label">
                         <span class="label-text font-bold"
                         >Kelebihan Lelang (jika ada)</span
@@ -283,27 +291,27 @@
                         type="text"
                         name="top-up-tabungan-emas-nama-bank"
                         placeholder="Nama Bank"
-                        class="input input-sm input-primary input-bordered w-full max-w-xs"
+                        class="input input-sm input-primary input-bordered w-full max-w-lg"
                 />
 
                 <input
                         type="text"
                         name="top-up-tabungan-emas-no-rek"
                         placeholder="No Rekening"
-                        class="input input-sm input-primary input-bordered w-full max-w-xs"
+                        class="input input-sm input-primary input-bordered w-full max-w-lg"
                 />
 
                 <input
                         type="text"
                         name="top-up-tabungan-emas-no-an"
                         placeholder="Atas Nama"
-                        class="input input-sm input-primary input-bordered w-full max-w-xs"
+                        class="input input-sm input-primary input-bordered w-full max-w-lg"
                 />
             </div>
         </div>
 
 
-        <div class="form-control w-full max-w-xs">
+        <div class="form-control w-full max-w-lg">
             <label class="label">
                         <span class="label-text font-bold"
                         >Besar Pinjaman</span
@@ -326,50 +334,53 @@
                         type="text"
                         name="besar-pinjaman-permintaan"
                         placeholder="500000000"
-                        class="input input-sm input-primary input-bordered w-full max-w-xs"
+                        class="input input-sm input-primary input-bordered w-full max-w-lg"
                 />
             </div>
         </div>
-        <div class="form-control w-full max-w-xs">
+        <div class="form-control w-full max-w-lg">
             <label class="label">
-                <span class="label-text font-bold">Barang Jaminan Yang Diserahkan</span>
+                <span class="label-text font-bold">Barang Jaminan Yang Diserahkan                 <span
+                            class="text-xs text-green-500">(wajib)</span></span>
             </label>
             <input
                     type="text"
                     requiresd
                     name="barang-jaminan"
                     placeholder="Sertifikat Tanah"
-                    class="input input-sm input-primary input-bordered w-full max-w-xs"
+                    class="input input-sm input-primary input-bordered w-full max-w-lg"
             />
         </div>
-        <div class="form-control w-full max-w-xs">
+        <div class="form-control w-full max-w-lg">
             <label class="label">
-                <span class="label-text font-bold">Alamat</span>
+                <span class="label-text font-bold">Alamat                 <span
+                            class="text-xs text-green-500">(wajib)</span></span>
             </label>
             <input
                     type="text"
                     required
                     name="alamat"
                     placeholder="Jl. Raya No. 1"
-                    class="input input-sm input-primary input-bordered w-full max-w-xs"
+                    class="input input-sm input-primary input-bordered w-full max-w-lg"
             />
         </div>
-        <div class="form-control w-full max-w-xs">
+        <div class="form-control w-full max-w-lg">
             <label class="label">
-                <span class="label-text font-bold">No. HP</span>
+                <span class="label-text font-bold">No. HP                 <span
+                            class="text-xs text-green-500">(wajib)</span></span>
             </label>
             <input
                     type="text"
                     required
                     name="nomor-hp"
                     placeholder="08123456789"
-                    class="input input-sm input-primary input-bordered w-full max-w-xs"
+                    class="input input-sm input-primary input-bordered w-full max-w-lg"
             />
         </div>
 
         <button
                 type="submit"
-                class="btn btn-primary rounded-lg mt-5 flex justify-center">Submit
+                class="btn btn-info w-full rounded-lg mt-5 flex justify-center">Submit
         </button>
     </form>
 </main>

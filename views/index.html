@@ -5,25 +5,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Queue</title>
-    <link rel="stylesheet" href="../public/style.css"/>
+    <link rel="stylesheet" href="/public/style.css"/>
+    <link rel="stylesheet" href="/public/fonts.css"/>
 </head>
-<body class="p-2 items-center flex flex-col gap-2 flex-col justify-center w-full h-screen">
-<h1 class="text-3xl font-normal">Pilih Loket
-</h1>
+<body class="p-3 max-w-lg w-full mx-auto flex items-center flex-col">
 
-<main class="md:flex-row flex gap-2 flex-col justify-center w-full">
+<a href="/login">
+<img src="https://www.pegadaian.co.id/assets/frontend/img/layout/pegadaian-logo.png"
+     class="w-52 object-cover mt-5"
+     alt="Logo Pegadaian">
+</a>
+
+<h1 class="text-sm mt-12">Selamat Datang di</h1>
+<h2 class="text-lg font-medium">Pegadaian Syariah UPS Harapan Raya</h2>
+
+<div class="mt-12 flex flex-col md:flex-row gap-2">
     <a
         href="/pawnshops/form"
-        class="border border-3 p-5 rounded text-sky-500 font-bold border-purple-300 hover:bg-purple-300 hover:text-white">
-        Loket 1 (Gadai)
+        class="border border-3 p-5 rounded-lg transition ease-in-out duration-300 text-sky-500 font-bold border-purple-300 bg-[#BFD630]  text-white hover:bg-purple-300 hover:text-white">
+        Loket 1 Gadai
     </a>
-
     <a
         href="/queues/request"
-        class="border border-3 p-5 rounded text-sky-500 font-bold border-purple-300 hover:bg-purple-300 hover:text-white">
-        Loket 2 (Kasir)
+        class="border border-3 p-5 rounded-lg transition ease-in-out duration-300 text-sky-500 font-bold border-purple-300 bg-[#00AC50] text-white hover:bg-purple-300 hover:text-white">
+        Loket 2 Kasir
     </a>
-
-</main>
+</div>
 </body>
 </html>
